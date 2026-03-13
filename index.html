@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de configurações dos alarmes</title>
+    <style>
+        :root { 
+            --primary: #673ab7; 
+            --bg: #f0ebf8; 
+            --card: #ffffff; 
+            --text: #202124; 
+            --border: #dadce0; 
+            --envio-bg: #e8f0fe; 
+            --envio-border: #1a73e8;
+        }
+        
+        body { font-family: 'Roboto', Arial, sans-serif; background-color: var(--bg); color: var(--text); padding: 0; margin: 0; display: flex; justify-content: center; }
+        .form-container { width: 100%; max-width: 770px; margin-bottom: 50px; }
+
+        header { 
+            background-color: var(--primary); 
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center; 
+            border-bottom-left-radius: 25px; 
+            border-bottom-right-radius: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo-container {
+            background-color: #333;
+            width: 130px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .logo-container img { width: 100%; height: auto; object-fit: cover; }
+        header h1 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: 0.5px; }
+
+        .section-card { 
+            background: var(--card); 
+            border-radius: 8px; 
+            padding: 24px; 
+            margin: 0 15px 12px; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        }
+
+        .client-data {
+            background-color: #f8fbff !important;
+            border-left: 6px solid var(--primary) !important;
+        }
+        
+        .envio-destaque { 
+            background-color: var(--envio-bg) !important; 
+            border-left: 6px solid var(--envio-border) !important; 
+        }
+
+        .title-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        h3 { margin: 0; font-size: 17px; font-weight: 700; color: var(--primary); }
+        
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: #444; }
+        .input-text { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
+            font-size: 15px; 
+            box-sizing: border-box; 
+            transition: border 0.3s;
+        }
+        .input-text:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.1); }
+
+        .option-group { display: flex; flex-direction: column; gap: 10px; }
+        .option-item { display: flex; align-items: center; gap: 8px; width: 100%; }
+        
+        label { display: flex; align-items: center; font-size: 14px; cursor: pointer; padding: 2px 0; margin: 0; flex-grow: 1; }
+        input[type="checkbox"], input[type="radio"] { 
+            margin-right: 12px; width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; 
+        }
+
+        .info-icon {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 18px; height: 18px; background: var(--primary); color: white;
+            border-radius: 50%; font-size: 11px; font-weight: bold; cursor: help;
+            position: relative; flex-shrink: 0;
+        }
+        .info-icon:hover::after {
+            content: attr(data-tooltip); position: absolute; bottom: 135%; left: 50%;
+            transform: translateX(-50%); background: #333; color: #fff; padding: 10px;
+            border-radius: 4px; font-size: 12px; width: 220px; z-index: 100;
+            text-transform: none; font-weight: normal; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            line-height: 1.4;
+        }
+
+        .submit-btn { 
+            background: var(--primary); color: white; border: none; padding: 18px; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; width: calc(100% - 30px); 
+            font-size: 18px; margin: 20px auto; display: block; transition: 0.3s; 
+        }
+        .submit-btn:hover { background: #512da8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="hikForm">
+        <header>
+            <div class="logo-container">
+                <img src="https://i.pinimg.com/736x/63/47/ce/6347ce3d2af30869563b274f6606358b.jpg" alt="Logo">
+            </div>
+            <h1>Formulário de configurações dos alarmes</h1>
+        </header>
+
+        <div class="section-card client-data">
+            <div class="title-wrapper">
+                <h3>👤 Dados do Cliente</h3>
+            </div>
+            <div class="input-group">
+                <label>Nome do cliente <span class="info-icon" data-tooltip="Insira o nome completo da empresa ou cliente.">i</span></label>
+                <input type="text" name="cliente_nome" class="input-text" placeholder="Digite o nome completo" required>
+            </div>
+            <div class="input-group">
+                <label>E-mail <span class="info-icon" data-tooltip="E-mail principal para contato.">i</span></label>
+                <input type="email" name="cliente_email" class="input-text" placeholder="email@exemplo.com.br" required>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>Câmeras</h3>
+                <span class="info-icon" data-tooltip="Alertas sobre o funcionamento e conexão das câmeras.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item">
+                    <label><input type="checkbox" name="cam" value="EXC_COM"> EXCEÇÃO DE COMUNICAÇÃO DA CÂMERA</label>
+                    <span class="info-icon" data-tooltip="Erro técnico no envio de dados da câmera.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cam" value="OFFLINE"> CÂMERA OFFLINE</label>
+                    <span class="info-icon" data-tooltip="Câmera totalmente desconectada da rede ou energia.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cam" value="ONLINE"> CÂMERA ONLINE</label>
+                    <span class="info-icon" data-tooltip="Câmera restabelecida e operando.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cam" value="EXC_GRAV"> EXCEÇÃO DE GRAVAÇÃO DE CÂMERA</label>
+                    <span class="info-icon" data-tooltip="Erro ao salvar imagens no disco rígido ou cartão.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cam" value="PERDA_VID"> PERDA DE VÍDEO</label>
+                    <span class="info-icon" data-tooltip="Sinal de vídeo cortado ou lente obstruída.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cam" value="EXC_ARMZ"> EXCEÇÃO DE ARMAZENAMENTO DE VÍDEO</label>
+                    <span class="info-icon" data-tooltip="Falha crítica no HD ou unidade de memória.">i</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>Condução do veículo</h3>
+                <span class="info-icon" data-tooltip="Eventos de telemetria detectados pelo sensor G e GPS.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Aviso de colisão"> Aviso de colisão</label>
+                    <span class="info-icon" data-tooltip="Alerta de proximidade perigosa com outro veículo.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Desvio de faixa"> Desvio de faixa</label>
+                    <span class="info-icon" data-tooltip="Troca de faixa sem sinalização ou por distração.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Cerca para detecção de entrada"> Cerca para detecção de entrada</label>
+                    <span class="info-icon" data-tooltip="Alerta quando o veículo entra em uma área geográfica predefinida.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Frenagem brusca"> Frenagem brusca</label>
+                    <span class="info-icon" data-tooltip="Redução repentina de velocidade detectada pelo acelerômetro.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Aceleração"> Aceleração</label>
+                    <span class="info-icon" data-tooltip="Aumento rápido de velocidade acima do padrão.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Curva fechada"> Curva fechada</label>
+                    <span class="info-icon" data-tooltip="Manobra de curva realizada com força G lateral elevada.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="cond" value="Excesso de velocidade"> Excesso de velocidade</label>
+                    <span class="info-icon" data-tooltip="Veículo acima do limite de velocidade configurado.">i</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>Status de monitoramento do motorista</h3>
+                <span class="info-icon" data-tooltip="Sistema DSM: Detecção de comportamentos perigosos via câmera interna.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Ausência"> Ausência</label><span class="info-icon" data-tooltip="Motorista não detectado na posição de condução.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Distração"> Distração</label><span class="info-icon" data-tooltip="Motorista não está olhando para a frente.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Condução de fadiga"> Condução de fadiga</label><span class="info-icon" data-tooltip="Sinais de cansaço ou sono detectados.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Mãos fora do volante"> Mãos fora do volante</label><span class="info-icon" data-tooltip="Direção sem as mãos por tempo prolongado.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Cinto desafivelado"> Cinto desafivelado</label><span class="info-icon" data-tooltip="Uso incorreto ou ausência do cinto.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Fumar"> Fumar</label><span class="info-icon" data-tooltip="Detecção de fumo na cabine.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Usar o celular"> Usar o celular</label><span class="info-icon" data-tooltip="Detecção de uso de dispositivo móvel.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Obstrução de câmera"> Obstrução de câmera</label><span class="info-icon" data-tooltip="Câmera DSM coberta ou bloqueada.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="dsm" value="Bocejando"> Bocejando</label><span class="info-icon" data-tooltip="Detecção visual de bocejo (fadiga inicial).">i</span></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>ADAS</h3>
+                <span class="info-icon" data-tooltip="Sistema de auxílio ao motorista focado na via externa através de IA.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="checkbox" name="adas_v" value="Não dar passagem"> Não dar passagem para pedestres</label><span class="info-icon" data-tooltip="Detecção de avanço sobre pedestres na via.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="adas_v" value="Colisão frontal"> Colisão frontal</label><span class="info-icon" data-tooltip="Risco iminente de colisão com o veículo à frente.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="adas_v" value="Aviso desvio"> Aviso de desvio de faixa</label><span class="info-icon" data-tooltip="Saída involuntária da faixa de rolagem.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="adas_v" value="Colisão pedestres"> Colisão de pedestres</label><span class="info-icon" data-tooltip="Alerta de risco de atropelamento.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="adas_v" value="Limite velocidade"> Limite de velocidade</label><span class="info-icon" data-tooltip="Leitura de placas e limite da via.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="adas_v" value="Excesso faixa"> Excesso de velocidade na faixa</label><span class="info-icon" data-tooltip="Velocidade acima do permitido na faixa específica.">i</span></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>Evento de rota</h3>
+                <span class="info-icon" data-tooltip="Monitoramento de trajetos e horários predefinidos.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="checkbox" name="rota" value="Chegada tardia"> Chegada tardia do veículo</label><span class="info-icon" data-tooltip="Atraso na chegada ao destino programado.">i</span></div>
+                <div class="option-item"><label><input type="checkbox" name="rota" value="Partida tardia"> Partida tardia do veículo</label><span class="info-icon" data-tooltip="Atraso no início da jornada.">i</span></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>Mais configurações do alarme no equipamento</h3>
+                <span class="info-icon" data-tooltip="Configurações de alerta no hardware local.">i</span>
+            </div>
+            <hr>
+            <div class="title-wrapper">
+                <h3>Adulteração de vídeo</h3>
+                <span class="info-icon" data-tooltip="Alerta disparado se a imagem for obstruída ou a câmera movida.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="radio" name="not_ad" value="sinal sonoro"> sinal sonoro</label><span class="info-icon" data-tooltip="Beep no dispositivo local.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="not_ad" value="E-MAIL"> E-MAIL</label><span class="info-icon" data-tooltip="Notificação via correio eletrônico.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="not_ad" value="NOTIFICAR PLATAFORMA"> NOTIFICAR PLATAFORMA</label><span class="info-icon" data-tooltip="Alerta no software de gestão central.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="not_ad" value="LIGAR A TELA"> LIGAR A TELA</label><span class="info-icon" data-tooltip="Ativação do monitor no veículo.">i</span></div>
+            </div>
+            <hr>
+            <div class="title-wrapper">
+                <h3>Perda de vídeo</h3>
+                <span class="info-icon" data-tooltip="Notificação imediata caso o sinal de vídeo seja interrompido.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="radio" name="not_per" value="sinal sonoro"> sinal sonoro</label><span class="info-icon" data-tooltip="Aviso sonoro no hardware.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="not_per" value="E-MAIL"> E-MAIL</label><span class="info-icon" data-tooltip="Notificação eletrônica imediata.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="not_per" value="NOTIFICAR PLATAFORMA"> NOTIFICAR PLATAFORMA</label><span class="info-icon" data-tooltip="Alerta crítico na central de monitoramento.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="not_per" value="LIGAR A TELA"> LIGAR A TELA</label><span class="info-icon" data-tooltip="Exibição forçada no monitor.">i</span></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>EXCEÇÃO</h3>
+                <span class="info-icon" data-tooltip="Ativação global para alarmes de falha de sistema.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="radio" name="exc_at" value="sim"> sim</label><span class="info-icon" data-tooltip="Habilita detecção de erros técnicos.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_at" value="não"> não</label><span class="info-icon" data-tooltip="Desabilita detecção de erros técnicos.">i</span></div>
+            </div>
+            <hr>
+            <div class="title-wrapper">
+                <h3>Tipo de exceção</h3>
+                <span class="info-icon" data-tooltip="Erros específicos de hardware ou software.">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="Armazenamento cheio"> Armazenamento cheio</label><span class="info-icon" data-tooltip="HD ou Cartão sem espaço.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="Erro armazenamento"> Erro de armazenamento</label><span class="info-icon" data-tooltip="Falha de hardware na memória.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="Rede desconectada"> Rede desconectada</label><span class="info-icon" data-tooltip="Falha de link 4G/Wi-Fi.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="Conflito de IP"> Conflito de IP</label><span class="info-icon" data-tooltip="Dois dispositivos na mesma rede com mesmo endereço.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="Login desconhecido"> Login desconhecido</label><span class="info-icon" data-tooltip="Tentativa de acesso não autorizado.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="Incompatibilidade"> Incompatibilidade entre padrões de vídeo</label><span class="info-icon" data-tooltip="Câmera e gravador com tecnologias diferentes.">i</span></div>
+                <div class="option-item"><label><input type="radio" name="exc_tipo" value="exceção de registro"> exceção de registro</label><span class="info-icon" data-tooltip="Erro no registro do dispositivo no servidor.">i</span></div>
+            </div>
+        </div>
+
+        <div class="section-card envio-destaque">
+            <div class="title-wrapper">
+                <h3>Formas de envio</h3>
+                <span class="info-icon" data-tooltip="como deseja receber esses alertas?">i</span>
+            </div>
+            <div class="option-group">
+                <div class="option-item">
+                    <label><input type="checkbox" name="env_adas" value="ÁUDIO"> ÁUDIO</label>
+                    <span class="info-icon" data-tooltip="aviso sonoro como sirene/Beep.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="env_adas" value="E-MAIL"> E-MAIL</label>
+                    <span class="info-icon" data-tooltip="notificação via e-mail.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="env_adas" value="LIGAR A TELA"> LIGAR A TELA</label>
+                    <span class="info-icon" data-tooltip="Exibição visual do alerta.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="env_adas" value="multimídia"> plataforma de upload de informações multimídia</label>
+                    <span class="info-icon" data-tooltip="Upload de vídeos para o servidor.">i</span>
+                </div>
+                <div class="option-item">
+                    <label><input type="checkbox" name="env_adas" value="anúncios de voz"> anúncios de voz</label>
+                    <span class="info-icon" data-tooltip="alerta de voz falada (TTS).">i</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="title-wrapper">
+                <h3>📧 Recebimento de Alertas</h3>
+                <span class="info-icon" data-tooltip="Caso tenha selecionado E-MAIL, indique abaixo para onde a notificação deve ser enviada.">i</span>
+            </div>
+            <div class="input-group">
+                <label>Digite o e-mail que irá receber</label>
+                <input type="email" name="email_destino_notificacao" class="input-text" placeholder="exemplo@servidor.com.br">
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="btnSalvar">Salvar Todas as Configurações</button>
+    </form>
+</div>
+
+<script>
+    const APP_URL = "https://script.google.com/macros/s/AKfycbymF2xgmGoJGE1Ze8b9JrsEy-k0mdmeC17aLhv66qb9-fG22H3sEwxOw4fdpfWgnUNC/exec"; // Certifique-se de que é a URL correta
+
+    document.getElementById('hikForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btnSalvar');
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
+
+        const formData = new FormData(this);
+        const data = {};
+        
+        // Organiza os dados
+        formData.forEach((value, key) => {
+            if (["cam", "cond", "dsm", "adas_v", "rota", "env_adas"].includes(key)) {
+                if (!data[key]) data[key] = [];
+                data[key].push(value);
+            } else {
+                data[key] = value;
+            }
+        });
+
+        // Converte arrays em strings para a planilha
+        for (let key in data) {
+            if (Array.isArray(data[key])) {
+                data[key] = data[key].join(", ");
+            }
+        }
+
+        // Enviando como query string (mais estável para Google Script)
+        const params = new URLSearchParams(data);
+
+        fetch(APP_URL + "?" + params.toString(), {
+            method: 'POST'
+        })
+        .then(response => {
+            alert("Configurações enviadas! Verifique a planilha.");
+            this.reset();
+        })
+        .catch(err => {
+            alert("Erro na conexão.");
+            console.error(err);
+        })
+        .finally(() => {
+            btn.innerText = "Salvar Todas as Configurações";
+            btn.disabled = false;
+        });
+    });
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
